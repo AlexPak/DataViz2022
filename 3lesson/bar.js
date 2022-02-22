@@ -2,7 +2,8 @@ async function drawBar() {
 
     const dataset = await d3.json("./my_weather_data.json")
     //Accessor
-  
+    const Accessor = d => d.humidity;
+    
 
     const width = 600
     let dimensions = {
