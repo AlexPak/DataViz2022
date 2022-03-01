@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First animation</title>
+  <body>
+    <div>
+      <svg width="120" height="120">
+        <rect x="10" y="10" width="100" height="100" fill="blue">
+          <animate
+            attributeName="x"
+            values="0;20;0"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="fill"
+            values="blue;green;blue"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </svg>
+    </div>
+  </body>
+</html>
