@@ -1,7 +1,6 @@
 async function drawBar() {
 
     const dataset = await d3.json("./my_weather_data.json")
-    // console.table(dataset);
     //Accessor
     const humidityAccessor = d => d.humidity;
     const yAccessor = d => d.length;
@@ -11,10 +10,10 @@ async function drawBar() {
       width: width,
       height: width * 0.6,
       margin: {
-        top: 30,
-        right: 10,
-        bottom: 50,
-        left: 50,
+        top: 20,
+        right: 30,
+        bottom: 20,
+        left: 30,
       },
     }
     dimensions.boundedWidth = dimensions.width
@@ -29,7 +28,7 @@ async function drawBar() {
     const wrapper = d3.select("#wrapper")
       .append("svg")
         .attr("width", dimensions.width)
-        .attr("height", dimensions.height)
+        .attr("height", dimensions.height);
 
     const bounds = wrapper.append("g")
       .style("translate",`translate(${dimensions.margin.left}px,${dimensions.margin.top}px)`);
@@ -66,6 +65,38 @@ async function drawBar() {
       .attr("height", d => dimensions.boundedHeight - yScaler(yAccessor(d)))
       .attr("fill", "#AAAAEE");
 
+    const mean = d3.mean(dataset,humidityAccessor);
+    console.log(mean);
+    const meanLine = bounds.append("line")
+      .attr("x1", xScaler(mean))
+      .attr("x2", xScaler(mean))
+      .attr("y1", -15)
+      .attr("y2", dimensions.boundedHeight)
+      .attr("stroke","black")
+      .attr("stroke-dasharray","2px 4px");
+
+    const meanLabel = bounds.append("text")
+      .attr("x",xScaler(mean))
+      .attr("y",10)
+      .text("Mean")
+      .attr("fill","maroon")
+      .attr("font-size","12px")
+      .attr("text-anchor","middle");
+
+    const xAxisGen = d3.axisBottom()
+      .scale(xScaler);
+    const xAxis = bounds.append("g")
+      .call(xAxisGen)
+      .style("transform",`translateY(${dimensions.boundedHeight}px)`);
+
+    const barText = binGroups.filter(yAccessor)
+      .append("text")
+      .attr("x", d => xScaler(d.x0) + (xScaler(d.x1)-xScaler(d.x0))/2)
+      .attr("y", d => yScaler(yAccessor(d)) - 5)
+      .text(yAccessor)
+      .attr("fill","darkgrey")
+      .attr("font-size","12px")
+      .attr("text-anchor","middle");
 
 }
 
