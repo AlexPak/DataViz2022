@@ -5,7 +5,7 @@ async function drawBar() {
     const width = 600
     let dimensions = {
       width: width,
-      height: width * 0.6,
+      height: width * 0.8,
       margin: {
         top: 20,
         right: 30,
@@ -28,7 +28,7 @@ async function drawBar() {
         .attr("height", dimensions.height);
 
     const bounds = wrapper.append("g")
-        .style("translate", `translate(${dimensions.margin.left}px,${dimensions.margin.top}px)`);
+        .style("transform", `translate(${dimensions.margin.left}px,${dimensions.margin.top}px)`);
 
     // init static elements
     bounds.append("g")
