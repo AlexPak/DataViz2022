@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID virality</title>
+    <script src="d3.mod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <div style="display: block; width: 100%">
+        <div style="display: block"><h3>Simple COVID Simulation</h3></div>
+        <div style="display: inline-block">
+            <div style="width: 300px;display: block">Iteration: <span id="iter">0</span></div>
+            <div style="width: 100px;display: inline-block"><label for="population">Population</label></div>
+            <input type="text" name="population" id="population" value="100"><br>
+            <div style="width: 100px;display: inline-block"><label for="mortality">Mortality</label></div>
+            <input type="text" name="mortality" id="mortality" value="0.2"><br>
+            <div style="width: 100px;display: inline-block"><label for="virality">Virality</label></div>
+            <input type="text" name="virality" id="virality" value="1"><br>
+            <div style="width: 100px;display: inline-block"><label for="incubation">Incubation</label></div>
+            <input type="text" name="incubation" id="incubation" value="300"><br>
+            <button onclick="simulation.restart()">Start</button>
+            <button onclick="simulation.stop()">Stop</button>
+            <button onclick="reconfig()">Reconfig</button>
+        </div>
+        <div style="display: inline-block">
+            <div id="plot"></div>
+        </div>
+    </div>
+    <div id="sandbox" style="display: block; width: 100%; border: black 1px"></div>
+    <script src="world.js"></script>
+
+</body>
+</html>
